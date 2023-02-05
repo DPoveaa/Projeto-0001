@@ -8,6 +8,8 @@ public class InimigoCirculo : MonoBehaviour
     public float distance;
     bool isRight = true;
     public Transform groundCheck;
+    private bool isFacingRight = true;
+    private float horizontal;
 
     void Start()
     {
@@ -33,6 +35,17 @@ public class InimigoCirculo : MonoBehaviour
             
             }
         }
-
+        Flip();
+        
+    }
+    private void Flip()
+    {
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
     }
 }
