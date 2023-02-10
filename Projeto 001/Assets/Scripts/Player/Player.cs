@@ -24,7 +24,9 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        horizontal = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
 
         #region reset jump
 
@@ -42,8 +44,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         #region Jump mechanic
-
-        horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetButtonDown("Jump") && jumps > 0)
         {
