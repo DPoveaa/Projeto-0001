@@ -7,9 +7,11 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     private float horizontal;
-    public float speed = 8f;
-    public float jumpingPower = 16f;
+    public float speed;
+    public float jumpingPower;
     private bool isFacingRight = true;
+    public int maxJumps;
+    private int jumps;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -23,23 +25,39 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        #region reset jump
+
+        if (IsGrounded())
+        {
+            jumps = maxJumps;
+        }
+
+        #endregion
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        #region Jump mechanic
+
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && jumps > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            jumps--;
         }
+
+        #endregion
 
         Flip();
     }
