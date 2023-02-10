@@ -8,7 +8,7 @@ public class GroundCheckFixed : MonoBehaviour
 {
     public Transform pivot;
     [SerializeField] public float height = 0.4f;
-    private Transform trans;
+    public Transform trans;
 
     // Start is called before the first frame update
     void Start()
