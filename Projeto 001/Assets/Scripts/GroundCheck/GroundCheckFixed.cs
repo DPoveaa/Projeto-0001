@@ -7,7 +7,7 @@ using UnityEngine;
 public class GroundCheckFixed : MonoBehaviour
 {
     public Transform pivot;
-    public float height = 0.4f;
+    [SerializeField] public float height = 0.4f;
     private Transform trans;
 
     // Start is called before the first frame update
