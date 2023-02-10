@@ -24,11 +24,13 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        #region Movement mechanic
         horizontal = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
+        #endregion
 
-        #region reset jump
+        #region Reset jump
 
         if (IsGrounded())
         {
@@ -56,7 +58,6 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             jumps--;
         }
-        Debug.Log()
         #endregion
 
         Flip();
