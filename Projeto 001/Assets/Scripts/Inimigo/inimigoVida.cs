@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class inimigoVida : MonoBehaviour
 {
-    public int vidaInimigo;
+    public int vidaInimigo = 6;
     public int vidaAtual;
-
+    
+    
 
     void Start()
     {
@@ -26,21 +27,22 @@ public class inimigoVida : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             vidaAtual -= 1;
-            if (vidaAtual == 2)
+            if (vidaAtual >= 5)
             {
-                Debug.Log("Hit!");
+                Debug.Log("Dano!");
             }
             else
             {
 
-                if (vidaAtual == 1)
+                if (vidaAtual >= 1)
                 {
-                    Debug.Log("Hit!");
+                    Debug.Log("Dano!");
                 }
                 else
                 {
                     if (vidaAtual >= 0)
                     {
+                        Debug.Log("Inimigo Morreu");
                         GameObject.Destroy(gameObject);
 
 

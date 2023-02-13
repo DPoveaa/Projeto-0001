@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
             dashTimer = dashDelay;
         }
 
-        Debug.Log(dashTimer + " " + dash);
+        //Debug.Log(dashTimer + " " + dash);
 
 
 

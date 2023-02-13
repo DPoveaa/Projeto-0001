@@ -1,12 +1,18 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class vidaPlayer : MonoBehaviour
 {
-    public int vidaplayer = 10;
+    public int vidaplayer;
     public int vidaatual;
 
+    [SerializeField] UnityEngine.UI.Image vidaOn1;
+    [SerializeField] UnityEngine.UI.Image vidaOff1;
+    [SerializeField] UnityEngine.UI.Image vidaOn2;
+    [SerializeField] UnityEngine.UI.Image vidaOff2;
 
     void Start()
     {
@@ -20,40 +26,44 @@ public class vidaPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("caixaaleatoria"))
         {
-            vidaatual -= 1;
-            if (vidaatual == 2)
-            {
-                Debug.Log("Hit!!");
-            }
-            else
-            {
-                if (vidaatual == 1)
-                {
-                    Debug.Log("Hit! Cuidado");
-                }
-                else
-                {
-                    if (vidaatual >= 0)
-                    {
+            Dano();
+            
 
-                        Debug.Log("Você morreu!");
-                        
-                        //GameObject.Destroy(gameobject); **Colocar depois
+        }
 
+    }
 
-                    }
+    public void Dano() {
+        vidaatual -= 1;
+        if (vidaatual >= 2)
+        {
+            vidaOn2.enabled = true; //Coração vazio
+            vidaOff2.enabled = false; //coração preenchido
+        }
+        else {
+            vidaOn2.enabled = false; 
+            vidaOff2.enabled = true;
+        }
+        if (vidaatual >= 1)
+        {
+            vidaOn2.enabled = true;
+            vidaOff2.enabled = false;
 
-                }
-
-            }
+            vidaOn1.enabled = true;
+            vidaOff1.enabled = false;
+        }
+        else {
+            vidaOn1.enabled = false;
+            vidaOff1.enabled = true;
+        }
+        if (vidaatual >= 0) {
+            Debug.Log("Você morreu!");
+            GameObject.Destroy(gameObject);
 
         }
 
 
-
     }
-
-
 }
