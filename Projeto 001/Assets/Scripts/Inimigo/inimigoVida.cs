@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class inimigoVida : MonoBehaviour
 {
-    public int vidaInimigo = 6;
+    public int vidaInimigo;
     public int vidaAtual;
 
 
