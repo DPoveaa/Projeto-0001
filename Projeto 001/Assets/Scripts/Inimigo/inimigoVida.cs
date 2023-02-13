@@ -1,3 +1,4 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
@@ -5,39 +6,51 @@ using UnityEngine;
 
 public class inimigoVida : MonoBehaviour
 {
-    public int vidaInimigo = 1;
+    public int vidaInimigo = 3;
     public int vidaAtual;
     
-    
+
     void Start()
     {
         vidaAtual = vidaInimigo;
     }
 
-    
+
     void Update()
     {
-        
+
     }
 
-    public void ReceberDano() {
-        vidaAtual -= 1;
-
-        if(vidaAtual <= 0)
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Morreu");
+            vidaAtual -= 1;
+            if (vidaAtual == 2)
+            {
+                Debug.Log("Hit!");
+            }
+            else
+            {
+
+                if (vidaAtual == 1)
+                {
+                    Debug.Log("Hit!");
+                }
+                else
+                {
+                    if (vidaAtual >= 0)
+                    {
+                        Debug.Log("Morreu");
+                    }
+
+                }
+            }
+
+
 
         }
+
     }
 }
-public class Collider
-{
-    private void OnTriggerEnter2d(Collider2D other) {
-        if (other.gameObject.CompareTag("Player")) {
-            other.gameObject.GetComponent<inimigoVida>().ReceberDano();
-        
-        }
-    }  
-    
 
-}
