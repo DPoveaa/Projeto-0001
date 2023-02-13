@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashTime = 0.5f; 
     [SerializeField] private float dashSpeedHorizontal = 20f;
     [SerializeField] private float dashSpeedVertical = 8f;
-    [SerializeField] private float dashDelay;
     [SerializeField] private int maxJumps;
     [SerializeField] private float jumpingPower;
     [SerializeField] private float speed;
