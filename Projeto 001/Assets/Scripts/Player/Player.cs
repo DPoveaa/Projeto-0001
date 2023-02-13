@@ -13,8 +13,10 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Private variables
-    [SerializeField] private float dashTime = 0.5f; 
+    
     [SerializeField] private float dashSpeedHorizontal = 20f;
+    [SerializeField] private float dashDelay = 3f;
+    [SerializeField] private float dashMax = 2;
     [SerializeField] private float dashSpeedVertical = 8f;
     [SerializeField] private int maxJumps;
     [SerializeField] private float jumpingPower;
@@ -23,6 +25,9 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    private float dash;
+    private float dashDuration = 0.5f;
+    private float dashTimer;
     private bool isDashing = false;
     private float dashTimeCounter;
     private float horizontal;
@@ -33,8 +38,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        dashTimer = dashDelay;
         horizontal = Input.GetAxisRaw("Horizontal");
         rb = GetComponent<Rigidbody2D>();
+        dashTimer = dashDelay;
     }
 
     void FixedUpdate()
@@ -58,11 +65,12 @@ public class Player : MonoBehaviour
 
         #region Dash
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && dash >= 1)
         {
             isDashing = true;
-            dashTimeCounter = dashTime;
+            dashTimeCounter = dashDuration;
             rb.velocity = new Vector2(horizontal * dashSpeedHorizontal, vertical * dashSpeedVertical);
+            dash--;
         }
 
         if (isDashing)
@@ -73,6 +81,19 @@ public class Player : MonoBehaviour
                 isDashing = false;
             }
         }
+
+        if (dash <= 0 && dashTimer > 0)
+        {
+            dashTimer -= 1* Time.deltaTime;
+        }
+
+        if (dashTimer <= 0)
+        {
+            dash = dashMax;
+            dashTimer = dashDelay;
+        }
+
+        Debug.Log(dashTimer + " " + dash);
 
 
 
