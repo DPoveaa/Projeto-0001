@@ -26,7 +26,7 @@ public class vidaPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("caixaaleatoria"))
+        if (col.gameObject.CompareTag("Inimigo"))
         {
             Dano();
             
