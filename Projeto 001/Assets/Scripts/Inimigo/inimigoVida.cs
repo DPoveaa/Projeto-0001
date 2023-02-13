@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class inimigoVida : MonoBehaviour
 {
-    public int vidaInimigo = 3;
+    public int vidaInimigo = 6;
     public int vidaAtual;
-    
+
 
     void Start()
     {
@@ -41,13 +41,13 @@ public class inimigoVida : MonoBehaviour
                 {
                     if (vidaAtual >= 0)
                     {
-                        Debug.Log("Morreu");
+                        GameObject.Destroy(gameObject);
+
+
                     }
 
                 }
             }
-
-
 
         }
 
