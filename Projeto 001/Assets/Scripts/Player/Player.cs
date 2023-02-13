@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Private variables
+    [SerializeField] private float dashTime = 0.5f; 
+    [SerializeField] private float dashSpeedHorizontal = 20f;
+    [SerializeField] private float dashSpeedVertical = 8f;
+    [SerializeField] private float dashDelay;
     [SerializeField] private int maxJumps;
     [SerializeField] private float jumpingPower;
     [SerializeField] private float speed;
@@ -20,32 +24,62 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
-
+    private bool isDashing = false;
+    private float dashTimeCounter;
     private float horizontal;
     private bool isFacingRight = true;
     private int jumps;
+
     #endregion
 
     void Start()
     {
-
+        horizontal = Input.GetAxisRaw("Horizontal");
         rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
 
-        #region Movement
 
-        horizontal = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-
-        #endregion
 
     }
 
     void Update()
     {
+        #region Movement
+
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        if (!isDashing)
+        {
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        }
+
+        #region Dash
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+        {
+            isDashing = true;
+            dashTimeCounter = dashTime;
+            rb.velocity = new Vector2(horizontal * dashSpeedHorizontal, vertical * dashSpeedVertical);
+        }
+
+        if (isDashing)
+        {
+            dashTimeCounter -= Time.deltaTime;
+            if (dashTimeCounter <= 0)
+            {
+                isDashing = false;
+            }
+        }
+
+
+
+        #endregion
+
+        #endregion
 
         #region Jump mechanics
 
@@ -82,9 +116,9 @@ public class Player : MonoBehaviour
 
     private void Flip()
     {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        if (horizontal < 0f || horizontal > 0f)
         {
-            isFacingRight = !isFacingRight;
+            isFacingRight = !isFacingRight; 
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
