@@ -301,11 +301,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 369458132931913314, guid: 3c00405057df20647957fdf143f3540b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.02
+      value: 11.35
       objectReference: {fileID: 0}
     - target: {fileID: 369458132931913314, guid: 3c00405057df20647957fdf143f3540b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 369458132931913314, guid: 3c00405057df20647957fdf143f3540b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -814,8 +814,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd85d18f401db541af3c861e5a9cc7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaplayer: 10
+  vidaplayer: 20
   vidaatual: 0
+  vidaOn: {fileID: 1269729689}
+  vidaOff: {fileID: 1566226475}
   vidaOn1: {fileID: 491211682}
   vidaOff1: {fileID: 1821423610}
   vidaOn2: {fileID: 195966307}
@@ -1330,11 +1332,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 369458132931913314, guid: 3c00405057df20647957fdf143f3540b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.02
+      value: -11.32
       objectReference: {fileID: 0}
     - target: {fileID: 369458132931913314, guid: 3c00405057df20647957fdf143f3540b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 369458132931913314, guid: 3c00405057df20647957fdf143f3540b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1687,7 +1689,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617036716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.49, y: -3.52, z: 0}
+  m_LocalPosition: {x: -3.49, y: -3.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2101,6 +2103,10 @@ PrefabInstance:
     - target: {fileID: 5383139982672687572, guid: 6bf726f9ffa2065468a9e03073412a68, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383139982672687572, guid: 6bf726f9ffa2065468a9e03073412a68, type: 3}
+      propertyPath: vidaInimigo
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5383139982672687573, guid: 6bf726f9ffa2065468a9e03073412a68, type: 3}
       propertyPath: m_Name
