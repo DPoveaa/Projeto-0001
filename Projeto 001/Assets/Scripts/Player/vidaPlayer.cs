@@ -37,7 +37,7 @@ public class vidaPlayer : MonoBehaviour
 
     public void Dano() {
         vidaatual -= 1;
-        if (vidaatual >= 2)
+        if (vidaatual == 2)
         {
             vidaOn2.enabled = true; //Coração vazio
             vidaOff2.enabled = false; //coração preenchido
@@ -46,7 +46,7 @@ public class vidaPlayer : MonoBehaviour
             vidaOn2.enabled = false; 
             vidaOff2.enabled = true;
         }
-        if (vidaatual >= 1)
+        if (vidaatual == 1)
         {
             vidaOn2.enabled = true;
             vidaOff2.enabled = false;
@@ -58,7 +58,7 @@ public class vidaPlayer : MonoBehaviour
             vidaOn1.enabled = false;
             vidaOff1.enabled = true;
         }
-        if (vidaatual >= 0) {
+        if (vidaatual <= 0) {
             Debug.Log("Você morreu!");
             GameObject.Destroy(gameObject);
 
