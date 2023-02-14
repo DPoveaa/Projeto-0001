@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform wallCheck1;
+    [SerializeField] private Transform wallCheck2;
+    [SerializeField] private LayerMask wallLayer;
     [SerializeField] private LayerMask groundLayer;
 
     private float dash;
@@ -30,7 +33,6 @@ public class Player : MonoBehaviour
     private float dashTimer;
     private bool isDashing = false;
     private float dashTimeCounter;
-    private float horizontal;
     private bool isFacingRight = true;
     private int jumps;
 
@@ -39,28 +41,28 @@ public class Player : MonoBehaviour
     void Start()
     {
         dashTimer = dashDelay;
-        horizontal = Input.GetAxisRaw("Horizontal");
         rb = GetComponent<Rigidbody2D>();
         dashTimer = dashDelay;
     }
 
     void FixedUpdate()
     {
-
+        
 
 
     }
 
     void Update()
     {
+
         #region Movement
 
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horiz = Input.GetAxis("Horizontal");
+        float verti = Input.GetAxis("Vertical");
 
         if (!isDashing)
         {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            rb.velocity = new Vector2(horiz * speed, rb.velocity.y);
         }
 
         #region Dash
@@ -69,7 +71,7 @@ public class Player : MonoBehaviour
         {
             isDashing = true;
             dashTimeCounter = dashDuration;
-            rb.velocity = new Vector2(horizontal * dashSpeedHorizontal, vertical * dashSpeedVertical);
+            rb.velocity = new Vector2(horiz * dashSpeedHorizontal, verti * dashSpeedVertical);
             dash--;
         }
 
@@ -129,6 +131,19 @@ public class Player : MonoBehaviour
         Flip();
     }
 
+    /*
+    private bool OnWall()
+    {
+        if (Physics2D.OverlapCircle(wallCheck1.position, 0.2f, wallLayer))
+        {
+            
+        } else if (Physics2D.OverlapCircle(wallCheck2.position, 0.2f, wallLayer))
+            {
+                return Physics2D.OverlapCircle(wallCheck2.position, 0.2f, wallLayer);
+            }
+    }
+    */
+
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
@@ -136,9 +151,11 @@ public class Player : MonoBehaviour
 
     private void Flip()
     {
-        if (horizontal < 0f || horizontal > 0f)
+        var horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
-            isFacingRight = !isFacingRight; 
+            isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
