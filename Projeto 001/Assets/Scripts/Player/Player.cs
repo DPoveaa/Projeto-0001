@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        #region Movement
+        #region Movement mechanics
 
         float horiz = Input.GetAxis("Horizontal");
         float verti = Input.GetAxis("Vertical");
@@ -128,26 +128,35 @@ public class Player : MonoBehaviour
 
         #endregion
 
+        #region OnWall mechanics
+
+        #endregion
+
         Flip();
     }
 
-    /*
+    #region WallCheck
     private bool OnWall()
     {
-        if (Physics2D.OverlapCircle(wallCheck1.position, 0.2f, wallLayer))
-        {
-            
-        } else if (Physics2D.OverlapCircle(wallCheck2.position, 0.2f, wallLayer))
-            {
-                return Physics2D.OverlapCircle(wallCheck2.position, 0.2f, wallLayer);
-            }
+        return Physics2D.OverlapCircle(wallCheck1.position, 0.2f, wallLayer);
+
     }
-    */
+
+    private bool OnWall2()
+    {
+        return Physics2D.OverlapCircle(wallCheck2.position, 0.2f, wallLayer);
+    }
+
+    #endregion
+
+    #region GroundCheck
 
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
+
+    #endregion
 
     private void Flip()
     {
