@@ -24,26 +24,31 @@ public class vidaPlayer : MonoBehaviour
     {
     }
 
+    #region OnTrigger 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Inimigo"))
         {
             Dano();
-            
+
 
         }
 
     }
+    #endregion
 
-    public void Dano() {
+    #region Dano
+    public void Dano()
+    {
         vidaatual -= 1;
-        if (vidaatual == 2)
+        if (vidaatual == 5)
         {
             vidaOn2.enabled = true; //Coração vazio
             vidaOff2.enabled = false; //coração preenchido
         }
-        else {
-            vidaOn2.enabled = false; 
+        else
+        {
+            vidaOn2.enabled = false;
             vidaOff2.enabled = true;
         }
         if (vidaatual == 1)
@@ -54,11 +59,13 @@ public class vidaPlayer : MonoBehaviour
             vidaOn1.enabled = true;
             vidaOff1.enabled = false;
         }
-        else {
+        else
+        {
             vidaOn1.enabled = false;
             vidaOff1.enabled = true;
         }
-        if (vidaatual <= 0) {
+        if (vidaatual <= 0)
+        {
             Debug.Log("Você morreu!");
             GameObject.Destroy(gameObject);
 
@@ -66,4 +73,5 @@ public class vidaPlayer : MonoBehaviour
 
 
     }
+    #endregion
 }

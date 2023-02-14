@@ -27,20 +27,20 @@ public class inimigoVida : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             vidaAtual -= 1;
-            if (vidaAtual >= 5)
+            if (vidaAtual == 3)
             {
                 Debug.Log("Dano!");
             }
             else
             {
 
-                if (vidaAtual >= 1)
+                if (vidaAtual <= 1)
                 {
                     Debug.Log("Dano!");
                 }
                 else
                 {
-                    if (vidaAtual >= 0)
+                    if (vidaAtual <= 0)
                     {
                         Debug.Log("Inimigo Morreu");
                         GameObject.Destroy(gameObject);
